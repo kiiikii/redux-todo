@@ -1,0 +1,38 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Stats Component > harus sesuai dengan snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="flex justify-between items-end mb-6 mt-16"
+  >
+    <div
+      class="flex gap-2 items-center"
+    >
+      <p
+        class="text-blue font-bold text-sm"
+      >
+        Belum Selesai
+      </p>
+      <span
+        class="bg-blue text-white font-bold dark:bg-gray-400 dark:text-gray-100 px-2 py-0.5 rounded-full text-xs"
+      >
+        5
+      </span>
+    </div>
+    <div
+      class="flex gap-2 items-center"
+    >
+      <p
+        class="text-purple font-bold text-sm"
+      >
+        Selesai
+      </p>
+      <span
+        class="bg-purple text-white dark:bg-gray-400 dark:text-gray-100 px-2 py-0.5 rounded-full text-xs font-bold"
+      >
+        2 dari 5
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;

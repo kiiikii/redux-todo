@@ -2,7 +2,7 @@ import React from "react";
 import Checkbox from "./ui/Checkbox";
 import Delete from "./ui/Delete";
 
-export default function TaskItem({ todo, onToggle, onDelete }) {
+const TaskItem = React.memo(function TaskItem({ todo, onToggle, onDelete }) {
   return (
     <div
       className={`flex items-start gap-3 p-4 border rounded-lg transition-all 
@@ -29,4 +29,6 @@ export default function TaskItem({ todo, onToggle, onDelete }) {
       <Delete onClick={() => onDelete(todo.id)} />
     </div>
   );
-}
+});
+
+export default TaskItem;

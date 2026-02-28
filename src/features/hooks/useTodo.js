@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addTodo, deleteTodo, getTodo, toggleTodo } from "../../apps/todoSlice";
 
@@ -15,16 +15,16 @@ export const useTodo = () => {
   }, [dispatch]);
 
   //* disini untuk menghitung data untuk dashboardnya
-  const total = items.length;
-  const completed = items.filter((t) => t.completed).length;
+  //* lalu kita optimasi menggunakan useMemo supaya tidak dihitung ulang jika itemnyatidak berubah
+  const total = useMemo(() => items.length, [items]);
+  const completed = useMemo(
+    () => items.filter((t) => t.completed).length,
+    [items],
+  );
 
-  return {
-    todos: items,
-    loading,
-    error,
-    total,
-    completed,
-    add: (title) => {
+  //* disini kita menggunakan useCallback supaya referensi fungsinya dari add stabil
+  const add = useCallback(
+    (title) => {
       //* disini kita lakukan validasi dan sanitasinya
       const cleanTitle = title.trim();
 
@@ -55,15 +55,34 @@ export const useTodo = () => {
         }),
       );
     },
-    remove: (id) => {
+    [dispatch],
+  );
+
+  //* dan disini useCallbacknya digunakan di remove supaya TaskItem tidak re-render sia-sia
+  const remove = useCallback(
+    (id) => {
       //* konfirmasi jika ingin mengahapus tugas (karna terkadang kita tidak sengaja klik hapus jadi bisa dilakukan pencegahan dengan menambah konfirmasi)
       if (window.confirm("Apakah ingin menghapus tugas tersebut ?")) {
         dispatch(deleteTodo(id));
       }
     },
-    toggle: (todo) => {
-      //* disini hanya mengambil proses dari thunknya
-      dispatch(toggleTodo(todo));
-    },
+    [dispatch],
+  );
+
+  //* disini untuk useCallback digunakan untuk toggle supaya TaskItem tidak re-render sia-sia
+  const toggle = useCallback((todo) => {
+    //* disini hanya mengambil proses dari thunknya
+    dispatch(toggleTodo(todo));
+  }, [dispatch]);
+
+  return {
+    todos: items,
+    loading,
+    error,
+    total,
+    completed,
+    add,
+    remove,
+    toggle,
   };
 };

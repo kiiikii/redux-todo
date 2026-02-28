@@ -1,0 +1,46 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Header Component > harus sesuai dengan snapshot untuk memastikan strukturnya tidak berubah 1`] = `
+<DocumentFragment>
+  <div
+    class="min-h-screen bg-gray-100 dark:bg-gray-600 transition-colors duration-300"
+  >
+    <header
+      class="w-full h-50 bg-gray-200 dark:bg-gray-700 flex justify-center items-center"
+    >
+      <div
+        class="flex items-center gap-3"
+      >
+        <img
+          alt="Roket Logo"
+          class="h-9 object-contain"
+          src="/src/assets/rocket.png"
+        />
+        <h1
+          class="text-4xl font-black italic"
+        >
+          <span
+            class="text-blue"
+          >
+            to
+          </span>
+          <span
+            class="text-purple-dark"
+          >
+            do
+          </span>
+        </h1>
+      </div>
+    </header>
+    <main
+      class="max-w-184 mx-auto px-4"
+    >
+      <section
+        class="-mt-7"
+      >
+        <div />
+      </section>
+    </main>
+  </div>
+</DocumentFragment>
+`;

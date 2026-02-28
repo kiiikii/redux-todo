@@ -1,7 +1,8 @@
 import React from "react";
 import Roket from "../assets/rocket.png";
+import { memo } from "react";
 
-export default function Layout({ children }) {
+const Layout = memo(({ children }) => {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-600 transition-colors duration-300">
       <header className="w-full h-50 bg-gray-200 dark:bg-gray-700 flex justify-center items-center">
@@ -21,4 +22,6 @@ export default function Layout({ children }) {
       </main>
     </div>
   );
-}
+})
+
+export default Layout
